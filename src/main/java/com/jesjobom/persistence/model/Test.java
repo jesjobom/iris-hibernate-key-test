@@ -13,8 +13,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "test")
-//@SQLInsert(sql = "insert into test (nome, uuid) values (?, ?)")
-//@IdClass(TestPK.class)
 public class Test implements Serializable {
 
     @EmbeddedId
