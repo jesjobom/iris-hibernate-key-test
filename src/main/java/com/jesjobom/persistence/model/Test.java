@@ -2,6 +2,7 @@ package com.jesjobom.persistence.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import org.hibernate.annotations.SQLInsert;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -13,8 +14,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "test")
-//@SQLInsert(sql = "insert into test (nome, uuid) values (?, ?)")
-//@IdClass(TestPK.class)
+@SQLInsert(sql = "insert into test (test_date, name, uuid) values (?, ?, ?)")
 public class Test implements Serializable {
 
     @EmbeddedId
