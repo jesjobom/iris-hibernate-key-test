@@ -1,11 +1,11 @@
 
 spring:
   datasource:
-    url: "jdbc:IRIS://172.17.0.2:1972/HIVE-DEV"
+    url: "jdbc:IRIS://172.17.0.2:1972/USER"
     driver-class-name: "com.intersystems.jdbc.IRISDriver"
     hikari:
       username: "_SYSTEM"
-      password: "raposa"
+      password: "SYS"
       maximum-pool-size: 5
       minimum-idle: 1
       connection-timeout: 30000
