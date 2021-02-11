@@ -2,23 +2,28 @@ package com.jesjobom.persistence.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "test")
-//@SQLInsert(sql = "insert into test (nome, uuid) values (?, ?)")
-//@IdClass(TestPK.class)
+@IdClass(TestPK.class)
 public class Test implements Serializable {
 
-    @EmbeddedId
-    private TestPK pk;
+    @Id
+    @Column(name = "test_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Id
+    @Column(name = "uuid")
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    private UUID uuid;
 
     @Column(name = "name")
     private String name;
@@ -27,12 +32,20 @@ public class Test implements Serializable {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate date;
 
-    public TestPK getPk() {
-        return pk;
+    public Long getId() {
+        return id;
     }
 
-    public void setPk(TestPK pk) {
-        this.pk = pk;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {
@@ -56,11 +69,11 @@ public class Test implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Test test = (Test) o;
-        return Objects.equals(pk, test.pk);
+        return Objects.equals(id, test.id) && Objects.equals(uuid, test.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pk);
+        return Objects.hash(id, uuid);
     }
 }

@@ -1,21 +1,13 @@
 package com.jesjobom.persistence.model;
 
-import org.hibernate.annotations.Type;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-@Embeddable
 public class TestPK implements Serializable {
 
-    @Column(name = "test_id")
     private Long id;
 
-    @Column(name = "uuid")
-    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID uuid;
 
     public Long getId() {

@@ -1,7 +1,6 @@
 package com.jesjobom.persistence.manager;
 
 import com.jesjobom.persistence.model.Test;
-import com.jesjobom.persistence.model.TestPK;
 import com.jesjobom.persistence.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +18,8 @@ public class TestManager {
 
     @Transactional(Transactional.TxType.REQUIRED)
     public Test criar(String nome) {
-        TestPK testPK = new TestPK();
-        testPK.setUuid(UUID.randomUUID());
-
         Test test = new Test();
-        test.setPk(testPK);
+        test.setUuid(UUID.randomUUID());
         test.setName(nome);
         test.setDate(LocalDate.now());
 
